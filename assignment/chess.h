@@ -12,20 +12,11 @@
  */
 #ifndef __CHESS_H
 #define __CHESS_H
-
+#include <stdbool.h>
 
 typedef struct ChessSquare ChessBoard[8][8];
 typedef char File;
 typedef int Rank;
-
-struct ChessPiece{
-  enum PieceColor color;
-  enum PieceType type;
-};
-
-struct ChessSquare{
-  enum is_occupied;
-};
 
 enum PieceType{
   Pawn, Rook, Knight, Bishop,
@@ -33,6 +24,17 @@ enum PieceType{
 };
 enum PieceColor { White, Black };
 enum MoveType { NormalMove, CaptureMove };
+
+struct ChessPiece{
+  enum PieceColor color;
+  enum PieceType type;
+};
+
+struct ChessSquare{
+  bool is_occupied;
+  ChessPiece piece;
+};
+
 
 
 bool 	is_piece (struct ChessPiece pc, enum PieceColor color, enum PieceType type);
