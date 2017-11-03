@@ -3,14 +3,13 @@
  * ---------------------------------------------------------
  * Exercise Number: 0
  * Title:			chess.c
- * Author:			F. Bogengruber
+ * Author:			P. Bauer
  * Due Date:		November 03, 2010
  * ----------------------------------------------------------
  * Description:
  * Implementation of basic chess functions.
  * ----------------------------------------------------------
  */
- #include <stdlib.h>
  #include "general.h"
  #include "chess.h"
 
@@ -30,7 +29,6 @@
    return file;
  }
  bool is_move_from_base_line (enum PieceColor color, Rank rank){
-
    if(color == White && rank == 2)return true;
    else if(color == Black && rank ==7)return true;
    return false;
@@ -40,11 +38,10 @@
    return false;
  }
  void init_chess_board (ChessBoard chess_board){
-   for (int i = 1; i < MAX_OF_BOARD + 1; i++) {
-     for (int e = 1; e < MAX_OF_BOARD + 1; e++) {
+   for (int i = 0; i < MAX_OF_BOARD; i++) {
+     for (int e = 0; e < MAX_OF_BOARD; e++) {
        chess_board[i][e].is_occupied = false;
        chess_board[i][e].piece.type = NoPiece;
-
      }
    }
  }
@@ -65,12 +62,16 @@
     return false;
   }
  struct ChessPiece get_piece (ChessBoard chess_board, File file, Rank rank){
-  if(file >= 'a' && file <= 'h' && rank < 9 && rank> 0 && is_square_occupied(chess_board, file, rank))  {return chess_board[rank - 1][file - 'a'].piece;}
+  if(file >= 'a' && file <= 'h' && rank < 9 && rank > 0 && is_square_occupied(chess_board, file, rank))
+  {
+    return chess_board[rank - 1][file - 'a'].piece;
+  }
   struct ChessPiece give_back;
   give_back.type= NoPiece;
   return give_back;
  }
  void setup_chess_board (ChessBoard chess_board){
+   init_chess_board(chess_board);
   struct ChessPiece white_king = {White, King};
   struct ChessPiece white_queen = {White, Queen};
   struct ChessPiece white_rook = {White, Rook};
@@ -109,7 +110,6 @@
       add_piece(chess_board, i, 7, black_pawn);
     }
 
-    struct ChessPiece no_pice = {Black, NoPiece};
     for (int i = 3; i < 6; i++) {
       for (int j = 0; j < 8; j++) {
         chess_board[i][j].is_occupied = false;

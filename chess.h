@@ -25,16 +25,15 @@ enum PieceType{
 enum PieceColor { White, Black };
 enum MoveType { NormalMove, CaptureMove };
 
-struct ChessPiece{
-  enum PieceColor color;
-  enum PieceType type;
-};
+  struct ChessPiece{
+    enum PieceColor color;
+    enum PieceType type;
+  };
 
-struct ChessSquare{
+  struct ChessSquare{
   bool is_occupied;
   ChessPiece piece;
-};
-
+  };
 
 
 bool 	is_piece (struct ChessPiece pc, enum PieceColor color, enum PieceType type);
